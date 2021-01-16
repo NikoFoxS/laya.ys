@@ -1,30 +1,30 @@
-import GameConfig from "./GameConfig";
+import Config from "./Config";
 
 class Main {
 	constructor() {
 		//根据IDE设置初始化引擎		
-		if (window["Laya3D"]) Laya3D.init(GameConfig.width, GameConfig.height);
-		else Laya.init(GameConfig.width, GameConfig.height, Laya["WebGL"]);
+		if (window["Laya3D"]) Laya3D.init(Config.width, Config.height);
+		else Laya.init(Config.width, Config.height, Laya["WebGL"]);
 		Laya["Physics"] && Laya["Physics"].enable();
 		Laya["DebugPanel"] && Laya["DebugPanel"].enable();
-		Laya.stage.scaleMode = GameConfig.scaleMode;
-		Laya.stage.screenMode = GameConfig.screenMode;
-		Laya.stage.alignV = GameConfig.alignV;
-		Laya.stage.alignH = GameConfig.alignH;
+		Laya.stage.scaleMode = Config.scaleMode;
+		Laya.stage.screenMode = Config.screenMode;
+		Laya.stage.alignV = Config.alignV;
+		Laya.stage.alignH = Config.alignH;
 		//兼容微信不支持加载scene后缀场景
-		Laya.URL.exportSceneToJson = GameConfig.exportSceneToJson;
+		Laya.URL.exportSceneToJson = Config.exportSceneToJson;
 
 		//打开调试面板（通过IDE设置调试模式，或者url地址增加debug=true参数，均可打开调试面板）
-		if (GameConfig.debug || Laya.Utils.getQueryString("debug") == "true") Laya.enableDebugPanel();
-		if (GameConfig.physicsDebug && Laya["PhysicsDebugDraw"]) Laya["PhysicsDebugDraw"].enable();
-		if (GameConfig.stat) Laya.Stat.show();
+		if (Config.debug || Laya.Utils.getQueryString("debug") == "true") Laya.enableDebugPanel();
+		if (Config.physicsDebug && Laya["PhysicsDebugDraw"]) Laya["PhysicsDebugDraw"].enable();
+		if (Config.stat) Laya.Stat.show();
 		Laya.alertGlobalError(true);
 
 		let path = (<any>window).path || '';
 		Laya.URL.customFormat = (url: string) => {
 			url = path + url;
-			url = url.replace(/ /ig, '');
-			// console.log('加载::', url);
+			// url = url.replace(/ /ig, '');
+			console.log('加载::', url);
 			return url;
 		}
 
@@ -39,7 +39,7 @@ class Main {
 
 	onConfigLoaded(): void {
 		//加载IDE指定的场景
-		GameConfig.startScene && Laya.Scene.open("Play.scene");
+		Config.startScene && Laya.Scene.open("Menu2.scene");
 	}
 }
 //激活启动类

@@ -1,4 +1,4 @@
-import { Subject } from "../function/observer/Subject";
+import { Subject } from "../../widget/observer/Subject";
 /**
  * 点击发送通知给观察者
  */

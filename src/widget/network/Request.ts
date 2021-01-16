@@ -1,11 +1,10 @@
-export class Request extends Laya.Script {
+export class Request {
 
     private callback: any;
     private caller: any;
     private xhr: Laya.HttpRequest;
 
     constructor() {
-        super();
         this.xhr = new Laya.HttpRequest;
     }
 

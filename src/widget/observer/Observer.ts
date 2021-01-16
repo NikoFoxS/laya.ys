@@ -1,10 +1,9 @@
 import { Subject,IObserver } from "./Subject";
 
-export class ObserverScript extends Laya.Script implements IObserver
+export class Observer  implements IObserver
 {
     constructor()
     {
-        super();
         Subject.getInstance().registerObserver(this);
     }
 
